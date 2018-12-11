@@ -1,13 +1,6 @@
 import React from 'react';
+import Header from './Header';
 
-const Header = (props) => {
-  return (
-      <header>
-          <h1>{props.title}</h1>
-          <span className="stats">Player: {props.totalPlayers}</span>
-      </header>
-  )
-}
 
 const Player = (props) => {
   return (
@@ -58,7 +51,7 @@ class App extends React.Component {
   state = {
       players: [
           {
-              name: "Aaron",
+              name: "Gold",
               id: 1
             },
             {
