@@ -1,51 +1,6 @@
 import React from 'react';
 import Header from './Header';
-
-
-const Player = (props) => {
-  return (
-      <div className="player">
-          <span className="player-name">
-          <button className="remove-player" onClick={() => props.removePlayer(props.id) }>X</button>
-              {props.name}
-          </span>
-          <Counter />
-      </div>
-  )
-}
-
-class Counter extends React.Component {
-  state = {
-      score: 0
-  }
-
-  incrementScore(){
-      this.setState( prevState => ({
-              score: prevState.score + 1
-      }));
-  }
-
-  decrementScore(){
-      this.setState(  prevState => {
-          return{
-              score: prevState.score - 1    
-          }
-      });
-  }
-
-  render(){
-      return (
-          <div className="counter">
-          {/* Use arrowFunction for this, or
-              Use .bind(this) to call state
-           */}
-              <button className="counter-action decrement" onClick={() => this.decrementScore()}> - </button>
-              <span className="counter-score"> {this.state.score} </span>
-              <button className="counter-action increment" onClick={this.incrementScore.bind(this)}> + </button>
-          </div>
-      )
-  }
-}
+import Player from './Player';
 
 class App extends React.Component {
   state = {
