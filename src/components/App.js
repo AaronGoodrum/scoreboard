@@ -29,19 +29,42 @@ class App extends React.Component {
       ]
   }
 
-    handleScoreChange = (index, delta) => {
-    this.setState( prevState => ({
-            score: prevState.players[index].score += delta
-    }));
-}
+  //player id counter
+    prevPlayerId = this.state.players.length;
+//   prevPlayerId = () => {
+//         this.setState(prevState => ({
+//             return{
+//                 players: prevState.players.length =+1
+//             }
+//         })  
+//     }; 
 
-  handleRemovePlayer = (id) => {
+    handleScoreChange = (index, delta) => {
+        this.setState( prevState => ({
+            score: prevState.players[index].score += delta
+        }));
+    }
+
+    handleRemovePlayer = (id) => {
       this.setState( prevState => {
           return {
               players: prevState.players.filter( p => p.id !== id)
           }
       })
-  }
+    }
+
+    handleAddPlayer = (name) => {
+        this.setState (prevState => ({
+            players: [
+            ...this.state.players,    
+            {
+                name,
+                score: 0,
+                id: this.prevPlayerId +=1
+            }
+            ]
+        }))
+    }
   render(){
       return (
           <div className="scoreboard">
@@ -61,7 +84,7 @@ class App extends React.Component {
                   />
               )}
 
-              <AddPlayerForm />
+              <AddPlayerForm addPlayer={this.handleAddPlayer} />
           </div>
       )
   }
