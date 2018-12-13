@@ -31,13 +31,6 @@ class App extends React.Component {
 
   //player id counter
     prevPlayerId = this.state.players.length;
-//   prevPlayerId = () => {
-//         this.setState(prevState => ({
-//             return{
-//                 players: prevState.players.length =+1
-//             }
-//         })  
-//     }; 
 
     handleScoreChange = (index, delta) => {
         this.setState( prevState => ({
@@ -54,16 +47,18 @@ class App extends React.Component {
     }
 
     handleAddPlayer = (name) => {
-        this.setState (prevState => ({
-            players: [
-            ...this.state.players,    
-            {
-                name,
-                score: 0,
-                id: this.prevPlayerId +=1
+        this.setState (prevState => {
+            return{
+                players: [
+                ...prevState.players,    
+                    {
+                    name,
+                    score: 0,
+                    id: this.prevPlayerId +=1
+                    }
+                ]   
             }
-            ]
-        }))
+        })
     }
   render(){
       return (
