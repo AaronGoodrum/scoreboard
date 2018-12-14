@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 class Stopwatch extends Component {
-    state= {
-        clock: 0, 
+    state= { 
         elapsedTime: 0,
         prevTime: 0 ,
         isRunning: false
@@ -10,6 +9,10 @@ class Stopwatch extends Component {
 
     componentDidMount(){
        this.intervalID = setInterval(() => this.tick(), 100)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
     }
     tick = () => {
         if (this.state.isRunning) {
@@ -31,15 +34,17 @@ class Stopwatch extends Component {
     };
 
     resetClock = () => {
-        this.setState({clock: 0, elapsedTime: 0, isRunning: false})
+        this.setState({ elapsedTime: 0 })
     };
 
 
     render() {
+        const seconds = Math.floor(this.state.elapsedTime / 1000);
+
         return (
             <div className="stopwatch">
             <h2>Stopwatch</h2>
-            <span className="stopwatch-time">{this.state.clock}</span>
+            <span className="stopwatch-time">{seconds}</span>
             <button onClick={this.handleStopwatch.bind(this)}>{this.state.isRunning ? 'Stop' : 'Start'}</button> 
             <button onClick={this.resetClock.bind(this)}>Reset</button>
             </div>
