@@ -14,6 +14,7 @@ class Stopwatch extends Component {
     componentWillUnmount(){
         clearInterval(this.intervalID);
     }
+    
     tick = () => {
         if (this.state.isRunning) {
             const now = Date.now();
